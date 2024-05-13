@@ -1,7 +1,23 @@
 <script  lang="ts">
 import {defineComponent} from "vue";
+import Temporizador from "@/components/Temporizador.vue";
 export default defineComponent({
   name: "Formulario",
+  components: {
+    Temporizador
+  },
+ data() {
+     return{
+       descrisao: ''
+     }
+ },
+  methods:{
+    finalizarTarefas(tempoDecorrido: number): void {
+      console.log("tempo decorrido da tarefar  --> ", tempoDecorrido);
+      console.log("Descrição tarefar  --> ", this.descrisao);
+      this.descrisao ='';
+    }
+  }
 })
 </script>
 
@@ -9,26 +25,10 @@ export default defineComponent({
   <div class="box">
     <div class="columns">
       <div class="column is-8" role="form" aria-labelledby="formulario pra criação de npvas tarefas">
-        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar"/>
+        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar" v-model="descrisao"/>
       </div>
       <div class="column">
-        <div class="is-flex is-alingn-items-center is-justify-content-space-between">
-          <section>
-            <strong>00:00:00</strong>
-          </section>
-          <button class="button">
-              <span class="icon">
-                  <i class="fas fa-play"></i>
-              </span>
-            <span>play</span>
-          </button>
-          <button class="button">
-              <span class="icon">
-                  <i class="fas fa-stop"></i>
-              </span>
-            <span>stop</span>
-          </button>
-        </div>
+        <temporizador @aoTemporizadorFinalizado="finalizarTarefas"/>
       </div>
     </div>
   </div>

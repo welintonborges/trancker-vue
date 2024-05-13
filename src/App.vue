@@ -15,6 +15,7 @@ export default defineComponent({
         </div>
         <div class="column is-three-quarter">
         <formulario/>
+       <!-- Lista de tarefa-->
         </div>
       </main>
 </template>
