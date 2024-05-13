@@ -25,7 +25,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="box">
+  <div class="box formulario">
     <div class="columns">
       <div class="column is-8" role="form" aria-labelledby="formulario pra criação de npvas tarefas">
         <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar" v-model="descrisao"/>
@@ -37,6 +37,9 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped>
-
+<style >
+.formulario{
+  --color: var(--texto-primario);
+  background-color: var(--bg-primario);
+}
 </style>
