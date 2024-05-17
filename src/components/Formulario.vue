@@ -1,45 +1,54 @@
-<script  lang="ts">
-import {defineComponent} from "vue";
-import Temporizador from "@/components/Temporizador.vue";
-export default defineComponent({
-  name: "Formulario",
-  emits: ["aoSalvarTarefa"],
-  components: {
-    Temporizador
-  },
- data() {
-     return{
-       descrisao: ''
-     }
- },
-  methods:{
-    finalizarTarefas(tempoDecorrido: number): void {
-      this.$emit('aoSalvarTarefa', {
-        duracaoEmSegundos: tempoDecorrido,
-        descrisao: this.descrisao
-       })
-      this.descrisao ='';
-    }
-  }
-})
-</script>
-
 <template>
   <div class="box formulario">
     <div class="columns">
-      <div class="column is-8" role="form" aria-labelledby="formulario pra criação de npvas tarefas">
-        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar" v-model="descrisao"/>
+      <div
+          class="column is-8"
+          role="form"
+          aria-label="Formulário para criação de uma nova tarefa"
+      >
+        <input
+            type="text"
+            class="input"
+            placeholder="Qual tarefa você deseja iniciar?"
+            v-model="descricao"
+        />
       </div>
       <div class="column">
-        <temporizador @aoTemporizadorFinalizado="finalizarTarefas"/>
+        <Temporizador @aoTemporizadorFinalizado="finalizarTarefa"/>
       </div>
     </div>
   </div>
 </template>
 
-<style >
-.formulario{
-  --color: var(--texto-primario);
+<script lang="ts">
+import { defineComponent } from "vue";
+import Temporizador from './Temporizador.vue'
+
+export default defineComponent({
+  name: "Formulário",
+  emits: ['aoSalvarTarefa'],
+  components: {
+    Temporizador
+  },
+  data () {
+    return {
+      descricao: ''
+    }
+  },
+  methods: {
+    finalizarTarefa (tempoDecorrido: number) : void {
+      this.$emit('aoSalvarTarefa', {
+        duracaoEmSegundos: tempoDecorrido,
+        descricao: this.descricao
+      })
+      this.descricao = ''
+    }
+  }
+});
+</script>
+<style>
+.formulario {
+  color: var(--texto-primario);
   background-color: var(--bg-primario);
 }
 </style>
